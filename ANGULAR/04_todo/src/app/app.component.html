@@ -1,0 +1,66 @@
+<main class="shadow-md p-4 m-10">
+  <!-- app.component.html -->
+  <div class="bg-gray-800 p-4 rounded text-white text-center">
+    <h1 class="text-4xl font-bold">To do App</h1>
+
+    <div class="mt-5">
+      <form class="cont-input" (submit)="addTask()">
+        <label for="text-3xl">Agrega una nueva tarea</label>
+
+        <input
+          type="text"
+          placeholder="Sacar al perro"
+          class="px-3 py-2 mt-2 text-black"
+          [(ngModel)]="newTask"
+          name="newTask"
+        />
+        <div class="flex mt-3 justify-center">
+          <button
+            class="bg-red-700 text-white max-w-max px-4 py-2 rounded"
+            type="submit"
+          >
+            Agregar tarea
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<div class="p-4 m-10">
+  <h2 class="font-bold text-3xl text-gray-800 text-center">
+    {{ listTasks.length ? "Lista de tareas" : "No hay tareas" }}
+  </h2>
+  <div class="flex justify-center" *ngIf="listTasks.length">
+    <div class="w-1/2">
+      <div
+        class="my-3 shadow-md p-4 flex justify-between"
+        *ngFor="let temp of listTasks; let i = index"
+      >
+        <input type="checkbox" [(ngModel)]="listTasks[i].status" />
+        <p
+          *ngIf="!temp.isEditing"
+          (dblclick)="enableEditing(i)"
+          class="cursor-pointer"
+        >
+          {{ temp.name }}
+        </p>
+
+        <!-- Si está en modo de edición, mostrar el input -->
+        <input
+          *ngIf="temp.isEditing"
+          [(ngModel)]="listTasks[i].name"
+          (keydown)="saveTask(i, $event)"
+          class="px-3 py-2 mt-2 text-black border-2 border-gray-300"
+        />
+
+        <button
+          class="btn bg-red-600 px-3 text-white rounded"
+          (click)="removeTask(i)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="jumbotron text-center p-5 bg-light">
+  <button class="btn btn-success btn-lg" (click)="rollDice()">
+    Tirar dados
+  </button>
+  <br />
+  <img
+    class="img-dice"
+    [ngClass]="isRoll ? 'animation' : ''"
+    [src]="leftDice"
+    alt="dado 1"
+  />
+  <img
+    class="img-dice"
+    [src]="rightDice"
+    [ngClass]="isRoll ? 'animation' : ''"
+    alt="dado 2"
+  />
+
+  <h1 *ngIf="isPair">¡Ha salido par en los dados!</h1>
+</div>
