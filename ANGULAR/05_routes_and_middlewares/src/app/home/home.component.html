@@ -1,0 +1,15 @@
+<div class="min-h-screen flex flex-col bg-gray-100">
+  <!-- Header -->
+  <app-header [datoRecibido]="'Dashboard'"></app-header>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ title }}</h1>
+    <p class="text-lg text-gray-600">
+      Bienvenido al Dashboard. Aquí puedes gestionar tus datos y acceder a diferentes funcionalidades.
+    </p>
+  </main>
+
+  <!-- Footer -->
+  <app-footer (title)="recibirNotificacion($event)"></app-footer>
+</div>
